@@ -89,7 +89,7 @@
                   <span class="author-block">
                     <a href="https://github.com/otehemia" target="_blank">Keyan Wan</a><sup>1</sup></sup>,</span>
                        <span class="author-block">
-                          <a href="https://github.com/srwang0506" target="_blank">Sirui Wang</a><sup>1</sup></sup>,</span>
+                          <a href="https://orcid.org/0009-0006-2349-2230" target="_blank">Sirui Wang</a><sup>1</sup></sup>,</span>
                               <span class="author-block">
                                 <a href="https://dingbang777.github.io/" target="_blank">DingBang Huang<sup>1</sup></a>,</span>
                                 <span class="author-block">
@@ -145,7 +145,7 @@
                       <a href="#" target="_blank"
                       class="external-link button is-normal is-rounded is-dark animated-button">
                       <span class="icon">
-                        <img src="https://avatars.githubusercontent.com/u/57314153?s=200&v=4" alt="Gradio" style="width: 100%; height: 100%; object-fit: contain;">
+                        <i class="fas fa-gamepad"></i>
                       </span>
                       <span>Gradio</span>
                       </a>
@@ -207,21 +207,51 @@
   <div class="hero-body">
     <div class="container is-max-widescreen">
       <h2 class="title is-2 has-text-centered">Method Details</h2>
-      <div class="scrolling-wrapper-flexbox">
+      <div class="scrolling-wrapper-flexbox" id="method-carousel">
         <div class="pdf-card">
-          <embed src="static/images/methods/pipeline.pdf" type="application/pdf">
+          <img src="static/images/methods/pipeline.jpg" alt="Pipeline Method">
         </div>
         <div class="pdf-card">
-          <embed src="static/images/methods/reconstruct.pdf" type="application/pdf">
+          <img src="static/images/methods/reconstruct.jpg" alt="Reconstruction Method">
         </div>
         <div class="pdf-card">
-          <embed src="static/images/methods/app.pdf" type="application/pdf">
+          <img src="static/images/methods/app.jpg" alt="Application Method">
+        </div>
+        <!-- Duplicate for infinite scroll effect -->
+        <div class="pdf-card">
+          <img src="static/images/methods/pipeline.jpg" alt="Pipeline Method">
+        </div>
+        <div class="pdf-card">
+          <img src="static/images/methods/reconstruct.jpg" alt="Reconstruction Method">
+        </div>
+        <div class="pdf-card">
+          <img src="static/images/methods/app.jpg" alt="Application Method">
         </div>
       </div>
-      <p class="has-text-centered is-size-6 has-text-grey">Scroll horizontally to view more details.</p>
     </div>
   </div>
 </section>
+
+<script>
+  // Simple auto-scroll script
+  const carousel = document.getElementById('method-carousel');
+  let scrollAmount = 0;
+  const scrollStep = 1;
+  const delay = 20;
+
+  function autoScroll() {
+    if (carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth) / 2) {
+       carousel.scrollLeft = 0;
+    } else {
+       carousel.scrollLeft += scrollStep;
+    }
+  }
+  
+  let scrollInterval = setInterval(autoScroll, delay);
+
+  carousel.addEventListener('mouseenter', () => clearInterval(scrollInterval));
+  carousel.addEventListener('mouseleave', () => scrollInterval = setInterval(autoScroll, delay));
+</script>
 
 <section class="hero is-small">
   <div class="hero-body">
@@ -269,75 +299,82 @@ and the human’s LBS parameters. We also calculate an HOI loss, which includes 
     <div class="container">
       <h2 class="title is-2 has-text-centered">Reconstruction Results</h2>
       
-      <!-- Group 1: Guitar -->
-      <h3 class="title is-4 has-text-centered">Guitar</h3>
       <div class="columns is-centered">
-        <div class="column is-5">
-          <div class="card">
-            <header class="card-header">
-              <p class="card-header-title is-centered">Input Video</p>
-            </header>
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <video autoplay controls muted loop playsinline width="100%">
-                  <source src="static/images/guitar_org.mp4" type="video/mp4">
-                </video>
-              </figure>
+        <!-- Sidebar List -->
+        <div class="column is-3">
+          <aside class="menu">
+            <p class="menu-label">Select Demo</p>
+            <ul class="menu-list">
+              <li><a class="is-active" onclick="showDemo('guitar')">Guitar</a></li>
+              <li><a onclick="showDemo('piano')">Piano</a></li>
+              <!-- Add more items here -->
+            </ul>
+          </aside>
+        </div>
+
+        <!-- Display Area -->
+        <div class="column is-9">
+          <!-- Guitar Demo -->
+          <div id="demo-guitar" class="demo-content">
+            <div class="columns is-centered">
+              <div class="column is-6">
+                <h4 class="title is-4 has-text-centered">Input Video</h4>
+                <figure class="image is-16by9">
+                  <video autoplay controls muted loop playsinline width="100%">
+                    <source src="static/images/guitar_org.mp4" type="video/mp4">
+                  </video>
+                </figure>
+              </div>
+              <div class="column is-6">
+                <h4 class="title is-4 has-text-centered">Reconstruction</h4>
+                <figure class="image is-16by9">
+                  <video autoplay controls muted loop playsinline width="100%">
+                    <source src="static/images/guitar.webm" type="video/webm">
+                  </video>
+                </figure>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="column is-5">
-          <div class="card">
-            <header class="card-header">
-              <p class="card-header-title is-centered">Reconstruction</p>
-            </header>
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <video autoplay controls muted loop playsinline width="100%">
-                  <source src="static/images/guitar.webm" type="video/webm">
-                </video>
-              </figure>
+
+          <!-- Piano Demo -->
+          <div id="demo-piano" class="demo-content" style="display: none;">
+            <div class="columns is-centered">
+              <div class="column is-6">
+                <h4 class="title is-4 has-text-centered">Input Video</h4>
+                <figure class="image is-16by9">
+                  <video autoplay controls muted loop playsinline width="100%">
+                    <source src="static/images/piano_org.mp4" type="video/mp4">
+                  </video>
+                </figure>
+              </div>
+              <div class="column is-6">
+                <h4 class="title is-4 has-text-centered">Reconstruction</h4>
+                <figure class="image is-16by9">
+                  <video autoplay controls muted loop playsinline width="100%">
+                    <source src="static/images/piano.webm" type="video/webm">
+                  </video>
+                </figure>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Group 2: Piano -->
-      <h3 class="title is-4 has-text-centered mt-6">Piano</h3>
-      <div class="columns is-centered">
-        <div class="column is-5">
-          <div class="card">
-            <header class="card-header">
-              <p class="card-header-title is-centered">Input Video</p>
-            </header>
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <video autoplay controls muted loop playsinline width="100%">
-                  <source src="static/images/piano_org.mp4" type="video/mp4">
-                </video>
-              </figure>
-            </div>
-          </div>
-        </div>
-        <div class="column is-5">
-          <div class="card">
-            <header class="card-header">
-              <p class="card-header-title is-centered">Reconstruction</p>
-            </header>
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <video autoplay controls muted loop playsinline width="100%">
-                  <source src="static/images/piano.webm" type="video/webm">
-                </video>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
+
+<script>
+function showDemo(demoId) {
+  // Hide all demos
+  document.querySelectorAll('.demo-content').forEach(el => el.style.display = 'none');
+  // Show selected demo
+  document.getElementById('demo-' + demoId).style.display = 'block';
+  
+  // Update active menu item
+  document.querySelectorAll('.menu-list a').forEach(el => el.classList.remove('is-active'));
+  event.target.classList.add('is-active');
+}
+</script>
 
 <!-- End image carousel -->
 
