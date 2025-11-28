@@ -196,10 +196,10 @@
         <h2 class="title is-2">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            <p>Generalized robots must learn from diverse, large-scale human-object interactions (HOI) to operate robustly in the real world. Monocular internet videos offer a nearly limitless and readily available source of data, capturing an unparalleled diversity of human activities, objects, and environments. However, accurately and scalably extracting 4D interaction data from these in-the-wild videos remains a significant and unsolved challenge.
-Thus, in this work, we introduce \textbf{4DHOISolver}, a novel and efficient optimization framework that constrains the ill-posed 4D HOI reconstruction problem by leveraging sparse, human-in-the-loop contact point annotations, while maintaining high spatio-temporal coherence and physical plausibility.
-Leveraging this framework, we introduce \textbf{Open4DHOI}, a new large-scale 4D HOI dataset featuring a diverse catalog of \textbf{144} object types and  \textbf{103} actions.
-Furthermore, we demonstrate the effectiveness of our reconstructions by enabling an RL-based agent to imitate the recovered motions. However, a comprehensive benchmark of existing 3D foundation models indicates that automatically predicting precise human-object contact correspondences remains an unsolved problem, underscoring the immediate necessity of our human-in-the-loop strategy while posing an open challenge to the community.</p>
+            Generalized robots must learn from diverse, large-scale human-object interactions (HOI) to operate robustly in the real world. Monocular internet videos offer a nearly limitless and readily available source of data, capturing an unparalleled diversity of human activities, objects, and environments. However, accurately and scalably extracting 4D interaction data from these in-the-wild videos remains a significant and unsolved challenge.
+            Thus, in this work, we introduce <strong>4DHOISolver</strong>, a novel and efficient optimization framework that constrains the ill-posed 4D HOI reconstruction problem by leveraging sparse, human-in-the-loop contact point annotations, while maintaining high spatio-temporal coherence and physical plausibility.
+            Leveraging this framework, we introduce <strong>Open4DHOI</strong>, a new large-scale 4D HOI dataset featuring a diverse catalog of <strong>144</strong> object types and <strong>103</strong> actions.
+            Furthermore, we demonstrate the effectiveness of our reconstructions by enabling an RL-based agent to imitate the recovered motions. However, a comprehensive benchmark of existing 3D foundation models indicates that automatically predicting precise human-object contact correspondences remains an unsolved problem, underscoring the immediate necessity of our human-in-the-loop strategy while posing an open challenge to the community.
           </p>
         </div>
       </div>
@@ -315,30 +315,26 @@ and the human’s LBS parameters. We also calculate an HOI loss, which includes 
         <!-- Default Content (Guitar) -->
         <div class="columns is-centered">
           <div class="column is-5">
-            <div class="card">
-              <header class="card-header">
-                <p class="card-header-title is-centered">Input Video</p>
+            <div style="border: 1px solid #dbdbdb; border-radius: 4px; overflow: hidden;">
+              <header class="has-background-light p-2">
+                <p class="title is-5 has-text-centered m-0">Input Video</p>
               </header>
-              <div class="card-image" style="display: flex; justify-content: center; align-items: center; background-color: #000;">
-                <figure class="image is-square" style="width: 100%;">
-                  <video id="main-input-video" autoplay controls muted loop playsinline style="width: 100%; height: 100%; object-fit: contain;">
-                    <source src="static/images/guitar_org.mp4" type="video/mp4">
-                  </video>
-                </figure>
+              <div style="display: flex; justify-content: center; align-items: center; background-color: #000; aspect-ratio: 1/1;">
+                <video id="main-input-video" autoplay controls muted loop playsinline style="width: 100%; height: 100%; object-fit: contain;">
+                  <source src="static/images/guitar_org.webm" type="video/webm">
+                </video>
               </div>
             </div>
           </div>
           <div class="column is-5">
-            <div class="card">
-              <header class="card-header">
-                <p class="card-header-title is-centered">Reconstruction</p>
+            <div style="border: 1px solid #dbdbdb; border-radius: 4px; overflow: hidden;">
+              <header class="has-background-light p-2">
+                <p class="title is-5 has-text-centered m-0">Reconstruction</p>
               </header>
-              <div class="card-image" style="display: flex; justify-content: center; align-items: center; background-color: #000;">
-                <figure class="image is-square" style="width: 100%;">
-                  <video id="main-recon-video" autoplay controls muted loop playsinline style="width: 100%; height: 100%; object-fit: contain;">
-                    <source src="static/images/guitar.webm" type="video/webm">
-                  </video>
-                </figure>
+              <div style="display: flex; justify-content: center; align-items: center; background-color: #000; aspect-ratio: 1/1;">
+                <video id="main-recon-video" autoplay controls muted loop playsinline style="width: 100%; height: 100%; object-fit: contain;">
+                  <source src="static/images/guitar.webm" type="video/webm">
+                </video>
               </div>
             </div>
           </div>
@@ -389,11 +385,11 @@ and the human’s LBS parameters. We also calculate an HOI loss, which includes 
 <script>
 const demos = {
   'guitar': {
-    input: 'static/images/guitar_org.mp4',
+    input: 'static/images/guitar_org.webm',
     recon: 'static/images/guitar.webm'
   },
   'piano': {
-    input: 'static/images/piano_org.mp4',
+    input: 'static/images/piano_org.webm',
     recon: 'static/images/piano.webm'
   }
 };
