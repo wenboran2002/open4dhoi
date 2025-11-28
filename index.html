@@ -39,6 +39,29 @@
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
+  <style>
+    .scrolling-wrapper-flexbox {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 20px;
+      padding-bottom: 20px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .pdf-card {
+      flex: 0 0 auto;
+      width: 80vw;
+      max-width: 1000px;
+      height: 600px;
+      border: 1px solid #dbdbdb;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .pdf-card embed {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -62,13 +85,17 @@
               <span class="author-block">
                 <a href="https://github.com/wenboran2002/" target="_blank">Boran Wen*</a><sup>1</sup></sup>,</span>
                 <span class="author-block">
-                <a href="https://github.com/wenboran2002/" target="_blank">Ye Lu*</a><sup>1</sup></sup>,</span>
+                <a href="https://orcid.org/0009-0000-2517-5956" target="_blank">Ye Lu*</a><sup>1</sup></sup>,</span>
                   <span class="author-block">
-                    <a href="https://dingbang777.github.io/" target="_blank">DingBang Huang<sup>1</sup></a>,</span>
-                    <span class="author-block">
-                      <a href="https://github.com/Amadeus0079" target="_blank"><sup>1</sup></a>,</span>
-                      <span class="author-block">
-                        <a href="https://github.com/jakecodespace" target="_blank">Jiahong Zhou<sup>1</sup></a>,</span>
+                    <a href="https://github.com/otehemia" target="_blank">Keyan Wan</a><sup>1</sup></sup>,</span>
+                       <span class="author-block">
+                          <a href="https://github.com/srwang0506" target="_blank">Sirui Wang</a><sup>1</sup></sup>,</span>
+                              <span class="author-block">
+                                <a href="https://dingbang777.github.io/" target="_blank">DingBang Huang<sup>1</sup></a>,</span>
+                                <span class="author-block">
+                                  <a href="https://github.com/Amadeus0079" target="_blank"><sup>1</sup></a>,</span>
+                                  <span class="author-block">
+                                    <a href="https://github.com/jakecodespace" target="_blank">Jiahong Zhou<sup>1</sup></a>,</span>
                         
                           
                           <a href="https://dirtyharrylyl.github.io/" target="_blank">Yong-Lu Li<sup>1</sup></a>,</span>
@@ -118,7 +145,7 @@
                       <a href="#" target="_blank"
                       class="external-link button is-normal is-rounded is-dark animated-button">
                       <span class="icon">
-                        <i class="fas fa-play-circle"></i>
+                        <img src="https://avatars.githubusercontent.com/u/57314153?s=200&v=4" alt="Gradio" style="width: 100%; height: 100%; object-fit: contain;">
                       </span>
                       <span>Gradio</span>
                       </a>
@@ -145,10 +172,10 @@
 
 <!-- Teaser Video -->
 <section class="hero teaser">
-  <div class="container is-max-desktop">
+  <div class="container is-max-widescreen">
     <div class="hero-body">
       <div class="video-container">
-        <iframe width="100%" height="500" src="https://www.youtube.com/embed/eIoUBbeRM08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="100%" height="600" src="https://www.youtube.com/embed/eIoUBbeRM08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       <h2 class="subtitle has-text-centered">
         Efficient and Scalable Monocular Human-Object Interaction Motion Reconstruction.
@@ -175,6 +202,26 @@
   </div>
 </section>
 <!-- End paper abstract -->
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <h2 class="title is-2 has-text-centered">Method Details</h2>
+      <div class="scrolling-wrapper-flexbox">
+        <div class="pdf-card">
+          <embed src="static/images/methods/pipeline.pdf" type="application/pdf">
+        </div>
+        <div class="pdf-card">
+          <embed src="static/images/methods/reconstruct.pdf" type="application/pdf">
+        </div>
+        <div class="pdf-card">
+          <embed src="static/images/methods/app.pdf" type="application/pdf">
+        </div>
+      </div>
+      <p class="has-text-centered is-size-6 has-text-grey">Scroll horizontally to view more details.</p>
+    </div>
+  </div>
+</section>
 
 <section class="hero is-small">
   <div class="hero-body">
@@ -221,74 +268,73 @@ and the human’s LBS parameters. We also calculate an HOI loss, which includes 
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-2 has-text-centered">Reconstruction Results</h2>
-      <div class="columns is-multiline is-centered">
-        <div class="column is-one-third">
+      
+      <!-- Group 1: Guitar -->
+      <h3 class="title is-4 has-text-centered">Guitar</h3>
+      <div class="columns is-centered">
+        <div class="column is-5">
           <div class="card">
+            <header class="card-header">
+              <p class="card-header-title is-centered">Input Video</p>
+            </header>
             <div class="card-image">
               <figure class="image is-16by9">
                 <video autoplay controls muted loop playsinline width="100%">
-                  <source src="static/videos/demo_1.mp4" type="video/mp4">
+                  <source src="static/images/guitar_org.mp4" type="video/mp4">
                 </video>
               </figure>
             </div>
           </div>
         </div>
-        <div class="column is-one-third">
+        <div class="column is-5">
           <div class="card">
+            <header class="card-header">
+              <p class="card-header-title is-centered">Reconstruction</p>
+            </header>
             <div class="card-image">
               <figure class="image is-16by9">
                 <video autoplay controls muted loop playsinline width="100%">
-                  <source src="static/videos/demo_2.mp4" type="video/mp4">
-                </video>
-              </figure>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-third">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <video autoplay controls muted loop playsinline width="100%">
-                  <source src="static/videos/demo_3.mp4" type="video/mp4">
-                </video>
-              </figure>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-third">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <video autoplay controls muted loop playsinline width="100%">
-                  <source src="static/videos/demo_4.mp4" type="video/mp4">
-                </video>
-              </figure>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-third">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <video autoplay controls muted loop playsinline width="100%">
-                  <source src="static/videos/demo_5.mp4" type="video/mp4">
-                </video>
-              </figure>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-third">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <video autoplay controls muted loop playsinline width="100%">
-                  <source src="static/videos/demo_6.mp4" type="video/mp4">
+                  <source src="static/images/guitar.webm" type="video/webm">
                 </video>
               </figure>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Group 2: Piano -->
+      <h3 class="title is-4 has-text-centered mt-6">Piano</h3>
+      <div class="columns is-centered">
+        <div class="column is-5">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title is-centered">Input Video</p>
+            </header>
+            <div class="card-image">
+              <figure class="image is-16by9">
+                <video autoplay controls muted loop playsinline width="100%">
+                  <source src="static/images/piano_org.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="column is-5">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title is-centered">Reconstruction</p>
+            </header>
+            <div class="card-image">
+              <figure class="image is-16by9">
+                <video autoplay controls muted loop playsinline width="100%">
+                  <source src="static/images/piano.webm" type="video/webm">
+                </video>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
