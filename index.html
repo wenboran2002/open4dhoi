@@ -196,8 +196,10 @@
         <h2 class="title is-2">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            <p>Reconstructing human-object interactions (HOI) from single images is fundamental in computer vision.
-            Existing methods are primarily trained and tested on indoor scenes due to the lack of 3D data, particularly constrained by the object variety, making it challenging to generalize to real-world scenes with a wide range of objects. The limitations of previous 3D HOI datasets were primarily due to the difficulty in acquiring 3D object assets. However, with the development of 3D reconstruction from single images, recently it has become possible to reconstruct various objects from 2D HOI images. We therefore propose a pipeline for annotating fine-grained 3D humans, objects, and their interactions from single images. We annotated 2.5k+ 3D HOI assets from existing 2D HOI datasets and built the first open-vocabulary in-the-wild 3D HOI dataset <strong>Open3DHOI</strong>, to serve as a future test set. Moreover, we design a novel Gaussian-HOI optimizer, which efficiently reconstructs the spatial interactions between humans and objects while learning the contact regions. Besides the 3D HOI reconstruction, we also propose several new tasks for 3D HOI understanding to pave the way for future work.</p>
+            <p>Generalized robots must learn from diverse, large-scale human-object interactions (HOI) to operate robustly in the real world. Monocular internet videos offer a nearly limitless and readily available source of data, capturing an unparalleled diversity of human activities, objects, and environments. However, accurately and scalably extracting 4D interaction data from these in-the-wild videos remains a significant and unsolved challenge.
+Thus, in this work, we introduce \textbf{4DHOISolver}, a novel and efficient optimization framework that constrains the ill-posed 4D HOI reconstruction problem by leveraging sparse, human-in-the-loop contact point annotations, while maintaining high spatio-temporal coherence and physical plausibility.
+Leveraging this framework, we introduce \textbf{Open4DHOI}, a new large-scale 4D HOI dataset featuring a diverse catalog of \textbf{144} object types and  \textbf{103} actions.
+Furthermore, we demonstrate the effectiveness of our reconstructions by enabling an RL-based agent to imitate the recovered motions. However, a comprehensive benchmark of existing 3D foundation models indicates that automatically predicting precise human-object contact correspondences remains an unsolved problem, underscoring the immediate necessity of our human-in-the-loop strategy while posing an open challenge to the community.</p>
           </p>
         </div>
       </div>
@@ -317,9 +319,9 @@ and the human’s LBS parameters. We also calculate an HOI loss, which includes 
               <header class="card-header">
                 <p class="card-header-title is-centered">Input Video</p>
               </header>
-              <div class="card-image">
-                <figure class="image is-16by9">
-                  <video id="main-input-video" autoplay controls muted loop playsinline width="100%">
+              <div class="card-image" style="display: flex; justify-content: center; align-items: center; background-color: #000;">
+                <figure class="image is-square" style="width: 100%;">
+                  <video id="main-input-video" autoplay controls muted loop playsinline style="width: 100%; height: 100%; object-fit: contain;">
                     <source src="static/images/guitar_org.mp4" type="video/mp4">
                   </video>
                 </figure>
@@ -331,9 +333,9 @@ and the human’s LBS parameters. We also calculate an HOI loss, which includes 
               <header class="card-header">
                 <p class="card-header-title is-centered">Reconstruction</p>
               </header>
-              <div class="card-image">
-                <figure class="image is-16by9">
-                  <video id="main-recon-video" autoplay controls muted loop playsinline width="100%">
+              <div class="card-image" style="display: flex; justify-content: center; align-items: center; background-color: #000;">
+                <figure class="image is-square" style="width: 100%;">
+                  <video id="main-recon-video" autoplay controls muted loop playsinline style="width: 100%; height: 100%; object-fit: contain;">
                     <source src="static/images/guitar.webm" type="video/webm">
                   </video>
                 </figure>
@@ -348,9 +350,9 @@ and the human’s LBS parameters. We also calculate an HOI loss, which includes 
         <!-- Guitar Thumbnail -->
         <div class="column is-2-desktop is-3-tablet is-4-mobile">
           <div class="card demo-thumbnail is-active" onclick="switchDemo('guitar', this)" style="cursor: pointer; border: 2px solid transparent;">
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <video muted preload="metadata" width="100%">
+            <div class="card-image" style="background-color: #000;">
+              <figure class="image is-square">
+                <video muted preload="metadata" style="width: 100%; height: 100%; object-fit: contain;">
                   <source src="static/images/guitar.webm" type="video/webm">
                 </video>
               </figure>
@@ -364,9 +366,9 @@ and the human’s LBS parameters. We also calculate an HOI loss, which includes 
         <!-- Piano Thumbnail -->
         <div class="column is-2-desktop is-3-tablet is-4-mobile">
           <div class="card demo-thumbnail" onclick="switchDemo('piano', this)" style="cursor: pointer; border: 2px solid transparent;">
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <video muted preload="metadata" width="100%">
+            <div class="card-image" style="background-color: #000;">
+              <figure class="image is-square">
+                <video muted preload="metadata" style="width: 100%; height: 100%; object-fit: contain;">
                   <source src="static/images/piano.webm" type="video/webm">
                 </video>
               </figure>
