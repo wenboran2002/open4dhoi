@@ -14,7 +14,7 @@
   <meta property="og:image:height" content="630"/>
 
 
-  <meta name="twitter:title" content="Open3DHOI">
+  <meta name="twitter:title" content="Open4DHOI">
   <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
   <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
@@ -46,6 +46,7 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
 <body>
 
@@ -59,20 +60,22 @@
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="https://github.com/wenboran2002/" target="_blank">Boran Wen</a><sup>1</sup></sup>,</span>
+                <a href="https://github.com/wenboran2002/" target="_blank">Boran Wen*</a><sup>1</sup></sup>,</span>
                 <span class="author-block">
-                  <a href="https://dingbang777.github.io/" target="_blank">DingBang Huang<sup>1</sup></a>,</span>
+                <a href="https://github.com/wenboran2002/" target="_blank">Ye Lu*</a><sup>1</sup></sup>,</span>
                   <span class="author-block">
-                    <a href="https://github.com/Amadeus0079" target="_blank"><sup>1</sup></a>,</span>
+                    <a href="https://dingbang777.github.io/" target="_blank">DingBang Huang<sup>1</sup></a>,</span>
                     <span class="author-block">
-                      <a href="https://github.com/jakecodespace" target="_blank">Jiahong Zhou<sup>1</sup></a>,</span>
-                      
+                      <a href="https://github.com/Amadeus0079" target="_blank"><sup>1</sup></a>,</span>
+                      <span class="author-block">
+                        <a href="https://github.com/jakecodespace" target="_blank">Jiahong Zhou<sup>1</sup></a>,</span>
+                        
                           
                           <a href="https://dirtyharrylyl.github.io/" target="_blank">Yong-Lu Li<sup>1</sup></a>,</span>
                   </div>
 
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block"><sup>1</sup>Shanghai Jiao Tong University, <sup>2</sup>East China Normal University<br>CVPR 2025</span>
+                    <span class="author-block"><sup>1</sup>SJTU, FDU, Sii, STU<sup>2</sup></span>
                   </div>
 
                   <div class="column has-text-centered">
@@ -144,9 +147,9 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline controls width="100%">
-        <source src="static/videos/demo.mp4" type="video/mp4">
-      </video>
+      <div class="video-container">
+        <iframe width="100%" height="500" src="https://www.youtube.com/embed/eIoUBbeRM08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
       <h2 class="subtitle has-text-centered">
         Efficient and Scalable Monocular Human-Object Interaction Motion Reconstruction.
       </h2>
@@ -173,88 +176,153 @@
 </section>
 <!-- End paper abstract -->
 
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-2 has-text-centered">Method Overview</h2>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <img src="static/images/pipeline.jpg" alt="Pipeline Image" class="centered-image-pipeline"/>
+          <h2 class="subtitle has-text-centered">
+            Our pipeline. The optimizer first converts the human and object into 3D Gaussian points, then calculates a rendering loss by
+comparing the Gaussian-rendered image with the ground truth image. This loss is backpropagated to update the object’s pose parameters
+and the human’s LBS parameters. We also calculate an HOI loss, which includes collision, depth and contact losses. Finally, we refine the result by optimizing the contact regions.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-2 has-text-centered">Interactive 3D Objects</h2>
+      <div class="columns is-centered">
+        <div class="column is-one-third has-text-centered">
+           <model-viewer src="static/models/guitar.glb" alt="A 3D model of a guitar" auto-rotate camera-controls style="width: 100%; height: 400px; background-color: #f0f0f0;"></model-viewer>
+           <h3 class="subtitle is-4">Electric Guitar</h3>
+        </div>
+        <div class="column is-one-third has-text-centered">
+           <model-viewer src="static/models/dumbbell.glb" alt="A 3D model of a dumbbell" auto-rotate camera-controls style="width: 100%; height: 400px; background-color: #f0f0f0;"></model-viewer>
+           <h3 class="subtitle is-4">Dumbbell</h3>
+        </div>
+      </div>
+      <h2 class="subtitle has-text-centered">
+        Interact with the 3D models above by dragging to rotate and scrolling to zoom.
+      </h2>
+    </div>
+  </div>
+</section>
 
 <!-- End image carousel -->
 
   <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-2 has-text-centered">Visualization</h2>
+      <h2 class="title is-2 has-text-centered">Reconstruction Results</h2>
       <div class="columns is-multiline is-centered">
         <div class="column is-one-third">
-          <video autoplay controls muted loop playsinline width="100%">
-            <source src="static/videos/demo_1.mp4" type="video/mp4">
-          </video>
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9">
+                <video autoplay controls muted loop playsinline width="100%">
+                  <source src="static/videos/demo_1.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
         </div>
         <div class="column is-one-third">
-          <video autoplay controls muted loop playsinline width="100%">
-            <source src="static/videos/demo_2.mp4" type="video/mp4">
-          </video>
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9">
+                <video autoplay controls muted loop playsinline width="100%">
+                  <source src="static/videos/demo_2.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
         </div>
         <div class="column is-one-third">
-          <video autoplay controls muted loop playsinline width="100%">
-            <source src="static/videos/demo_3.mp4" type="video/mp4">
-          </video>
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9">
+                <video autoplay controls muted loop playsinline width="100%">
+                  <source src="static/videos/demo_3.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
         </div>
         <div class="column is-one-third">
-          <video autoplay controls muted loop playsinline width="100%">
-            <source src="static/videos/demo_4.mp4" type="video/mp4">
-          </video>
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9">
+                <video autoplay controls muted loop playsinline width="100%">
+                  <source src="static/videos/demo_4.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
         </div>
         <div class="column is-one-third">
-          <video autoplay controls muted loop playsinline width="100%">
-            <source src="static/videos/demo_5.mp4" type="video/mp4">
-          </video>
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9">
+                <video autoplay controls muted loop playsinline width="100%">
+                  <source src="static/videos/demo_5.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
         </div>
         <div class="column is-one-third">
-          <video autoplay controls muted loop playsinline width="100%">
-            <source src="static/videos/demo_6.mp4" type="video/mp4">
-          </video>
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9">
+                <video autoplay controls muted loop playsinline width="100%">
+                  <source src="static/videos/demo_6.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- End image carousel -->
+
+<!-- Removed old Annotation section as requested to focus on core images first -->
+<!-- If you want to keep it, move it to a different location or uncomment -->
+<!--
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
     <h2 class="title is-2 has-text-centered">3DHOI Annotation</h2>
-      <!-- Annotation. -->
       <div id="results-carousel-annot" class="carousel results-carousel">
         <div class="item">
-          <!-- Your image here -->
           <img src="static/images/annot2.jpg" alt="MY ALT TEXT" class="centered-image-annot"/>
           <h2 class="subtitle has-text-centered">
-            Coarse Reconstruction and Object category distribution in our dataset Open3DHOI. We first obtain depth from the
-            images and generate point clouds. Given masks, we extract the
-            corresponding point clouds for the person (pink) and object (blue).
-            We obtain a rough reconstruction by matching the MESH vertices
-            of the person and the object with the depth point cloud.
+            Coarse Reconstruction and Object category distribution in our dataset Open3DHOI.
           </h2>
         </div>
-
         <div class="item">
-          <!-- Your image here -->
           <img src="static/images/annot1.jpg" alt="MY ALT TEXT" class="centered-image-annot"/>
           <h2 class="subtitle has-text-centered">
-            Annotation Pipeline. (a) Filtering. Given the reconstructed human and object meshes, annotators assess the quality. If the human
-            reconstruction is eligible, the contact area is further annotated. If the object reconstruction fails, the mask is redrawn manually and the
-            reconstruction is performed again. (b) Given the 3D human interaction through coarse reconstruction, we adjust the object position in
-            Blender. For example, the rough annotation of the couch and the human body shows a mesh collision. We move the object to make sure the
-            person is correctly seated on the couch. (c) We use a fine annotation tool to further align the annotated human and object with the image.
+            Annotation Pipeline.
           </h2>
         </div>
-
       </div>
-
     </div>
-
   </div>
 </section>
+-->
 
-
+<!-- Removed old Pipeline section as it is now moved to Method Overview -->
+<!--
   <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
@@ -263,19 +331,17 @@
         <div class="column">
           <img src="static/images/pipeline.jpg" alt="Pipeline Image" class="centered-image-pipeline"/>
           <h2 class="subtitle has-text-centered">
-            Our pipeline. The optimizer first converts the human and object into 3D Gaussian points, then calculates a rendering loss by
-comparing the Gaussian-rendered image with the ground truth image. This loss is backpropagated to update the object’s pose parameters
-and the human’s LBS parameters. We also calculate an HOI loss, which includes collision, depth and contact losses, the red overlapping
-areas between the human and object in the image represent collision regions and the dashed lines represent the ground truth depth and the
-depth during the optimization process. Finally, we refine the result by optimizing the contact regions
+            Our pipeline.
           </h2>
         </div>
       </div>
     </div>
   </div>
 </section>
+-->
 
-
+<!-- Removed old Results section as it is now redundant or can be merged -->
+<!--
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
@@ -289,7 +355,37 @@ depth during the optimization process. Finally, we refine the result by optimizi
     </div>
   </div>
 </section>
+-->
 
+
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-2 has-text-centered">Physics Optimization</h2>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+           <div class="columns is-centered">
+             <div class="column is-half">
+                <video autoplay controls muted loop playsinline width="100%">
+                  <source src="static/videos/physics_opt_1.mp4" type="video/mp4">
+                </video>
+                <h3 class="subtitle has-text-centered">Before Optimization</h3>
+             </div>
+             <div class="column is-half">
+                <video autoplay controls muted loop playsinline width="100%">
+                  <source src="static/videos/physics_opt_2.mp4" type="video/mp4">
+                </video>
+                <h3 class="subtitle has-text-centered">After Optimization</h3>
+             </div>
+           </div>
+           <h2 class="subtitle has-text-centered">
+            We apply physics-based optimization to refine the contact and reduce penetration between the human and the object.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!--BibTex citation -->
   <section class="section" id="BibTeX">
