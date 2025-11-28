@@ -347,30 +347,23 @@ and the human’s LBS parameters. We also calculate an HOI loss, which includes 
           position: relative;
           width: 100%;
           max-width: 100%;
-          overflow-x: auto;
-          overflow-y: hidden;
+          overflow-x: hidden; /* Hide scrollbar completely */
           padding: 20px 0;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: none; /* Firefox */
-        }
-        .carousel-container::-webkit-scrollbar {
-          display: none; /* Chrome/Safari */
         }
         
         .carousel-track {
           display: flex;
           align-items: center;
-          justify-content: center; /* Start centered, but JS will handle scroll if needed */
           gap: 20px;
-          padding: 0 50%; /* Allow scrolling to ends */
           width: max-content;
           margin: 0 auto;
+          /* Transition handled in JS or via class */
         }
         
         .demo-thumbnail {
           flex: 0 0 180px;
           width: 180px;
-          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
           opacity: 0.6;
           transform: scale(0.9);
           cursor: pointer;
@@ -412,69 +405,117 @@ and the human’s LBS parameters. We also calculate an HOI loss, which includes 
       </style>
 
       <div class="carousel-container" id="thumbnail-carousel">
-        <div class="carousel-track">
-          
-          <!-- Badminton -->
-          <div class="demo-thumbnail is-active" onclick="switchDemo('badminton', this)" data-key="badminton">
-            <div class="thumbnail-video-container">
-              <video muted preload="metadata">
-                <source src="static/images/badminton.webm" type="video/webm">
-              </video>
-            </div>
-            <div class="thumbnail-label">Badminton</div>
-          </div>
-
-          <!-- Bottle -->
-          <div class="demo-thumbnail" onclick="switchDemo('bottle', this)" data-key="bottle">
-            <div class="thumbnail-video-container">
-              <video muted preload="metadata">
-                <source src="static/images/bottle.webm" type="video/webm">
-              </video>
-            </div>
-            <div class="thumbnail-label">Bottle</div>
-          </div>
-
-          <!-- Electric Guitar -->
-          <div class="demo-thumbnail" onclick="switchDemo('electric_guitar', this)" data-key="electric_guitar">
-            <div class="thumbnail-video-container">
-              <video muted preload="metadata">
-                <source src="static/images/electric_guitar.webm" type="video/webm">
-              </video>
-            </div>
-            <div class="thumbnail-label">Electric Guitar</div>
-          </div>
-
-          <!-- Guitar -->
-          <div class="demo-thumbnail" onclick="switchDemo('guitar', this)" data-key="guitar">
-            <div class="thumbnail-video-container">
-              <video muted preload="metadata">
-                <source src="static/images/guitar.webm" type="video/webm">
-              </video>
-            </div>
-            <div class="thumbnail-label">Guitar</div>
-          </div>
-
-          <!-- Piano -->
-          <div class="demo-thumbnail" onclick="switchDemo('piano', this)" data-key="piano">
-            <div class="thumbnail-video-container">
-              <video muted preload="metadata">
-                <source src="static/images/piano.webm" type="video/webm">
-              </video>
-            </div>
-            <div class="thumbnail-label">Piano</div>
-          </div>
-
-          <!-- Table -->
-          <div class="demo-thumbnail" onclick="switchDemo('table', this)" data-key="table">
-            <div class="thumbnail-video-container">
-              <video muted preload="metadata">
-                <source src="static/images/table.webm" type="video/webm">
-              </video>
-            </div>
-            <div class="thumbnail-label">Table</div>
-          </div>
-
+        <div class="carousel-track" id="carousel-track">
+          <!-- Thumbnails injected by JS -->
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Physics Optimization Section -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-2 has-text-centered">Physics Optimization</h2>
+      <div class="columns is-multiline is-centered">
+        
+        <!-- Group 1 -->
+        <div class="column is-6-desktop is-12-tablet">
+            <div class="box" style="background-color: transparent; box-shadow: none;">
+                <div class="columns is-mobile is-variable is-1">
+                    <div class="column is-6">
+                        <div style="border-radius: 4px; overflow: hidden; border: 1px solid #dbdbdb;">
+                            <video autoplay controls muted loop playsinline style="width: 100%; display: block;">
+                                <source src="static/images/physics/1.mp4" type="video/mp4">
+                            </video>
+                            <p class="has-text-centered is-size-7 has-background-white has-text-weight-bold">Before</p>
+                        </div>
+                    </div>
+                    <div class="column is-6">
+                        <div style="border-radius: 4px; overflow: hidden; border: 1px solid #dbdbdb;">
+                            <video autoplay controls muted loop playsinline style="width: 100%; display: block;">
+                                <source src="static/images/physics/1_phy.mp4" type="video/mp4">
+                            </video>
+                            <p class="has-text-centered is-size-7 has-background-white has-text-weight-bold">After</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Group 2 -->
+        <div class="column is-6-desktop is-12-tablet">
+            <div class="box" style="background-color: transparent; box-shadow: none;">
+                <div class="columns is-mobile is-variable is-1">
+                    <div class="column is-6">
+                        <div style="border-radius: 4px; overflow: hidden; border: 1px solid #dbdbdb;">
+                            <video autoplay controls muted loop playsinline style="width: 100%; display: block;">
+                                <source src="static/images/physics/2.mp4" type="video/mp4">
+                            </video>
+                            <p class="has-text-centered is-size-7 has-background-white has-text-weight-bold">Before</p>
+                        </div>
+                    </div>
+                    <div class="column is-6">
+                        <div style="border-radius: 4px; overflow: hidden; border: 1px solid #dbdbdb;">
+                            <video autoplay controls muted loop playsinline style="width: 100%; display: block;">
+                                <source src="static/images/physics/2_phy.mp4" type="video/mp4">
+                            </video>
+                            <p class="has-text-centered is-size-7 has-background-white has-text-weight-bold">After</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Group 3 -->
+        <div class="column is-6-desktop is-12-tablet">
+            <div class="box" style="background-color: transparent; box-shadow: none;">
+                <div class="columns is-mobile is-variable is-1">
+                    <div class="column is-6">
+                        <div style="border-radius: 4px; overflow: hidden; border: 1px solid #dbdbdb;">
+                            <video autoplay controls muted loop playsinline style="width: 100%; display: block;">
+                                <source src="static/images/physics/3.mp4" type="video/mp4">
+                            </video>
+                            <p class="has-text-centered is-size-7 has-background-white has-text-weight-bold">Before</p>
+                        </div>
+                    </div>
+                    <div class="column is-6">
+                        <div style="border-radius: 4px; overflow: hidden; border: 1px solid #dbdbdb;">
+                            <video autoplay controls muted loop playsinline style="width: 100%; display: block;">
+                                <source src="static/images/physics/3_phy.mp4" type="video/mp4">
+                            </video>
+                            <p class="has-text-centered is-size-7 has-background-white has-text-weight-bold">After</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Group 4 -->
+        <div class="column is-6-desktop is-12-tablet">
+            <div class="box" style="background-color: transparent; box-shadow: none;">
+                <div class="columns is-mobile is-variable is-1">
+                    <div class="column is-6">
+                        <div style="border-radius: 4px; overflow: hidden; border: 1px solid #dbdbdb;">
+                            <video autoplay controls muted loop playsinline style="width: 100%; display: block;">
+                                <source src="static/images/physics/4.mp4" type="video/mp4">
+                            </video>
+                            <p class="has-text-centered is-size-7 has-background-white has-text-weight-bold">Before</p>
+                        </div>
+                    </div>
+                    <div class="column is-6">
+                        <div style="border-radius: 4px; overflow: hidden; border: 1px solid #dbdbdb;">
+                            <video autoplay controls muted loop playsinline style="width: 100%; display: block;">
+                                <source src="static/images/physics/4_phy.mp4" type="video/mp4">
+                            </video>
+                            <p class="has-text-centered is-size-7 has-background-white has-text-weight-bold">After</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -484,108 +525,196 @@ and the human’s LBS parameters. We also calculate an HOI loss, which includes 
 const demos = {
   'badminton': {
     input: 'static/images/badminton_org.webm',
-    recon: 'static/images/badminton.webm'
+    recon: 'static/images/badminton.webm',
+    label: 'Badminton'
   },
   'bottle': {
     input: 'static/images/bottle_org.webm',
-    recon: 'static/images/bottle.webm'
+    recon: 'static/images/bottle.webm',
+    label: 'Bottle'
   },
   'electric_guitar': {
     input: 'static/images/electric_guitar_org.webm',
-    recon: 'static/images/electric_guitar.webm'
+    recon: 'static/images/electric_guitar.webm',
+    label: 'Electric Guitar'
   },
   'guitar': {
     input: 'static/images/guitar_org.webm',
-    recon: 'static/images/guitar.webm'
+    recon: 'static/images/guitar.webm',
+    label: 'Guitar'
   },
   'piano': {
     input: 'static/images/piano_org.webm',
-    recon: 'static/images/piano.webm'
+    recon: 'static/images/piano.webm',
+    label: 'Piano'
   },
   'table': {
     input: 'static/images/table_org.webm',
-    recon: 'static/images/table.webm'
+    recon: 'static/images/table.webm',
+    label: 'Table'
   }
 };
 
-let autoPlayInterval;
 const demoKeys = Object.keys(demos);
-let currentIndex = 0;
+const totalDemos = demoKeys.length;
+// We create 3 sets of items for infinite scrolling illusion
+// Set 0: Clone (for scrolling left past start)
+// Set 1: Main (the one we track)
+// Set 2: Clone (for scrolling right past end)
+const sets = 3; 
+const mainSetIndex = 1; // The middle set
 
-function switchDemo(demoKey, element, isAuto = false) {
-  // Stop autoplay if manually clicked
-  if (!isAuto) {
-    clearInterval(autoPlayInterval);
-    // Optional: restart autoplay after some time?
-    // startAutoPlay(); 
+let currentVisualIndex = mainSetIndex * totalDemos; // Start at the beginning of the middle set
+let isAutoPlaying = true;
+
+function initCarousel() {
+  const track = document.getElementById('carousel-track');
+  track.innerHTML = '';
+
+  // Create 3 sets of thumbnails
+  for (let s = 0; s < sets; s++) {
+    demoKeys.forEach((key, index) => {
+      const demo = demos[key];
+      const div = document.createElement('div');
+      div.className = 'demo-thumbnail';
+      div.dataset.key = key;
+      div.dataset.index = s * totalDemos + index; // Unique visual index
+      div.onclick = () => handleUserClick(key, s * totalDemos + index);
+      
+      div.innerHTML = `
+        <div class="thumbnail-video-container">
+          <video muted preload="metadata">
+            <source src="${demo.recon}" type="video/webm">
+          </video>
+        </div>
+        <div class="thumbnail-label">${demo.label}</div>
+      `;
+      track.appendChild(div);
+    });
   }
 
-  // Update videos
+  // Initialize video listener
+  const inputVideo = document.getElementById('main-input-video');
+  inputVideo.addEventListener('ended', () => {
+    if (isAutoPlaying) {
+      playNext();
+    }
+  });
+
+  // Initial selection
+  updateSelection(currentVisualIndex, false);
+}
+
+function handleUserClick(key, visualIndex) {
+  isAutoPlaying = false; // Stop auto-play on interaction
+  updateSelection(visualIndex, true);
+}
+
+function playNext() {
+  updateSelection(currentVisualIndex + 1, true);
+}
+
+function updateSelection(visualIndex, animate) {
+  const track = document.getElementById('carousel-track');
+  const thumbnails = document.querySelectorAll('.demo-thumbnail');
+  const container = document.getElementById('thumbnail-carousel');
+  
+  // Handle wrapping logic
+  // If we moved past the end of the middle set + buffer, jump back
+  // Actually, simpler: if we are at the end of Set 2 (last set), jump to end of Set 1
+  // If we are at start of Set 0, jump to start of Set 1
+  
+  // But first, let's just update the visual state
+  currentVisualIndex = visualIndex;
+  
+  // Map visual index to data key
+  const logicalIndex = currentVisualIndex % totalDemos;
+  const key = demoKeys[logicalIndex];
+  
+  // Update Main Video
   const inputVideo = document.getElementById('main-input-video');
   const reconVideo = document.getElementById('main-recon-video');
   
-  // Only update if source changes to avoid flickering if clicking same
-  if (!inputVideo.src.endsWith(demos[demoKey].input)) {
-      inputVideo.src = demos[demoKey].input;
-      reconVideo.src = demos[demoKey].recon;
-      
+  // Only update source if changed (to prevent reload on jump if we were to jump)
+  // But here we are moving to next, so it always changes
+  if (!inputVideo.src.endsWith(demos[key].input)) {
+      inputVideo.src = demos[key].input;
+      reconVideo.src = demos[key].recon;
       inputVideo.load();
       inputVideo.play();
       reconVideo.load();
       reconVideo.play();
   }
 
-  // Update active state
-  document.querySelectorAll('.demo-thumbnail').forEach(el => {
+  // Update Thumbnails Styles
+  thumbnails.forEach(el => {
     el.classList.remove('is-active');
     el.style.borderColor = 'white';
   });
-  element.classList.add('is-active');
-  element.style.borderColor = '#3273dc';
-
-  // Scroll to center
-  const container = document.getElementById('thumbnail-carousel');
-  const track = container.querySelector('.carousel-track');
   
-  // Calculate scroll position to center the element
-  // We need the element's offset relative to the track, plus track's padding
-  // But simpler: element.offsetLeft is relative to offsetParent (track)
-  // We want element center to be at container center.
-  
-  const containerCenter = container.clientWidth / 2;
-  const elementCenter = element.offsetLeft + element.clientWidth / 2;
-  const scrollLeft = elementCenter - containerCenter;
-  
-  container.scrollTo({
-    left: scrollLeft,
-    behavior: 'smooth'
-  });
-
-  // Update index
-  currentIndex = demoKeys.indexOf(demoKey);
-}
-
-function startAutoPlay() {
-  autoPlayInterval = setInterval(() => {
-    currentIndex = (currentIndex + 1) % demoKeys.length;
-    const nextKey = demoKeys[currentIndex];
-    const nextElement = document.querySelector(`.demo-thumbnail[data-key="${nextKey}"]`);
-    if (nextElement) {
-      switchDemo(nextKey, nextElement, true);
-    }
-  }, 3000); // 3 seconds
-}
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-  // Center the initial active element
-  const active = document.querySelector('.demo-thumbnail.is-active');
-  if (active) {
-      // Small delay to ensure layout is done
-      setTimeout(() => switchDemo('badminton', active, true), 100);
+  const activeThumb = thumbnails[currentVisualIndex];
+  if (activeThumb) {
+    activeThumb.classList.add('is-active');
+    activeThumb.style.borderColor = '#3273dc';
+    
+    // Scroll to center
+    const containerCenter = container.clientWidth / 2;
+    const elementCenter = activeThumb.offsetLeft + activeThumb.clientWidth / 2;
+    let scrollLeft = elementCenter - containerCenter;
+    
+    container.scrollTo({
+      left: scrollLeft,
+      behavior: animate ? 'smooth' : 'auto'
+    });
   }
-  startAutoPlay();
-});
+
+  // Check for infinite loop reset
+  // If we are in the last set (Set 2), and we just transitioned...
+  // We want to jump back to Set 1 (Middle) seamlessly.
+  // We can do this after the transition ends.
+  // Since we use smooth scroll, we can check after a timeout or transitionend.
+  // However, `scrollTo` with behavior smooth doesn't provide a callback.
+  // A simple heuristic: if we are deep into Set 2, reset to Set 1.
+  // Or if we are deep into Set 0, reset to Set 1.
+  
+  if (currentVisualIndex >= (sets - 1) * totalDemos) {
+    // We are in the last set. Reset to middle set.
+    // Wait for scroll to finish (approx 500ms) then jump
+    setTimeout(() => {
+      currentVisualIndex = currentVisualIndex - totalDemos;
+      // Re-apply selection without animation
+      const newThumb = thumbnails[currentVisualIndex];
+      newThumb.classList.add('is-active'); // Ensure it stays active
+      
+      const newElementCenter = newThumb.offsetLeft + newThumb.clientWidth / 2;
+      const newScrollLeft = newElementCenter - containerCenter;
+      
+      container.scrollTo({
+        left: newScrollLeft,
+        behavior: 'auto' // Instant jump
+      });
+    }, 600); // Slightly longer than transition
+  }
+  
+  if (currentVisualIndex < totalDemos) {
+     // We are in the first set. Reset to middle set.
+     setTimeout(() => {
+      currentVisualIndex = currentVisualIndex + totalDemos;
+      const newThumb = thumbnails[currentVisualIndex];
+      newThumb.classList.add('is-active');
+      
+      const newElementCenter = newThumb.offsetLeft + newThumb.clientWidth / 2;
+      const newScrollLeft = newElementCenter - containerCenter;
+      
+      container.scrollTo({
+        left: newScrollLeft,
+        behavior: 'auto'
+      });
+    }, 600);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initCarousel);
 </script>
 
 <!-- End image carousel -->
