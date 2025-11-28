@@ -341,93 +341,140 @@ and the human’s LBS parameters. We also calculate an HOI loss, which includes 
         </div>
       </div>
 
-      <!-- Thumbnails Row -->
-      <div class="columns is-centered is-mobile is-multiline" id="demo-thumbnails">
+      <!-- Thumbnails Carousel -->
+      <style>
+        .carousel-container {
+          position: relative;
+          width: 100%;
+          max-width: 100%;
+          overflow-x: auto;
+          overflow-y: hidden;
+          padding: 20px 0;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none; /* Firefox */
+        }
+        .carousel-container::-webkit-scrollbar {
+          display: none; /* Chrome/Safari */
+        }
         
-        <!-- Badminton -->
-        <div class="column is-2-desktop is-3-tablet is-4-mobile">
-          <div class="demo-thumbnail is-active" onclick="switchDemo('badminton', this)" style="cursor: pointer; border: 2px solid #3273dc; border-radius: 4px; overflow: hidden; background-color: #000;">
-            <figure class="image is-square">
-              <video muted preload="metadata" style="width: 100%; height: 100%; object-fit: contain;">
+        .carousel-track {
+          display: flex;
+          align-items: center;
+          justify-content: center; /* Start centered, but JS will handle scroll if needed */
+          gap: 20px;
+          padding: 0 50%; /* Allow scrolling to ends */
+          width: max-content;
+          margin: 0 auto;
+        }
+        
+        .demo-thumbnail {
+          flex: 0 0 180px;
+          width: 180px;
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          opacity: 0.6;
+          transform: scale(0.9);
+          cursor: pointer;
+          border-radius: 8px;
+          overflow: hidden;
+          border: 2px solid white;
+          background-color: #000;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .demo-thumbnail.is-active {
+          opacity: 1;
+          transform: scale(1.15);
+          border-color: #3273dc;
+          box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+          z-index: 10;
+        }
+
+        .thumbnail-video-container {
+          width: 100%;
+          aspect-ratio: 16/9;
+          background: #000;
+          position: relative;
+        }
+        
+        .thumbnail-video-container video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .thumbnail-label {
+          background-color: #f5f5f5;
+          padding: 5px;
+          text-align: center;
+          font-size: 0.8rem;
+          font-weight: bold;
+        }
+      </style>
+
+      <div class="carousel-container" id="thumbnail-carousel">
+        <div class="carousel-track">
+          
+          <!-- Badminton -->
+          <div class="demo-thumbnail is-active" onclick="switchDemo('badminton', this)" data-key="badminton">
+            <div class="thumbnail-video-container">
+              <video muted preload="metadata">
                 <source src="static/images/badminton.webm" type="video/webm">
               </video>
-            </figure>
-            <div class="has-text-centered p-1" style="background-color: #f5f5f5;">
-              <p class="is-size-7 has-text-weight-bold">Badminton</p>
             </div>
+            <div class="thumbnail-label">Badminton</div>
           </div>
-        </div>
 
-        <!-- Bottle -->
-        <div class="column is-2-desktop is-3-tablet is-4-mobile">
-          <div class="demo-thumbnail" onclick="switchDemo('bottle', this)" style="cursor: pointer; border: 2px solid white; border-radius: 4px; overflow: hidden; background-color: #000;">
-            <figure class="image is-square">
-              <video muted preload="metadata" style="width: 100%; height: 100%; object-fit: contain;">
+          <!-- Bottle -->
+          <div class="demo-thumbnail" onclick="switchDemo('bottle', this)" data-key="bottle">
+            <div class="thumbnail-video-container">
+              <video muted preload="metadata">
                 <source src="static/images/bottle.webm" type="video/webm">
               </video>
-            </figure>
-            <div class="has-text-centered p-1" style="background-color: #f5f5f5;">
-              <p class="is-size-7 has-text-weight-bold">Bottle</p>
             </div>
+            <div class="thumbnail-label">Bottle</div>
           </div>
-        </div>
 
-        <!-- Electric Guitar -->
-        <div class="column is-2-desktop is-3-tablet is-4-mobile">
-          <div class="demo-thumbnail" onclick="switchDemo('electric_guitar', this)" style="cursor: pointer; border: 2px solid white; border-radius: 4px; overflow: hidden; background-color: #000;">
-            <figure class="image is-square">
-              <video muted preload="metadata" style="width: 100%; height: 100%; object-fit: contain;">
+          <!-- Electric Guitar -->
+          <div class="demo-thumbnail" onclick="switchDemo('electric_guitar', this)" data-key="electric_guitar">
+            <div class="thumbnail-video-container">
+              <video muted preload="metadata">
                 <source src="static/images/electric_guitar.webm" type="video/webm">
               </video>
-            </figure>
-            <div class="has-text-centered p-1" style="background-color: #f5f5f5;">
-              <p class="is-size-7 has-text-weight-bold">Electric Guitar</p>
             </div>
+            <div class="thumbnail-label">Electric Guitar</div>
           </div>
-        </div>
 
-        <!-- Guitar -->
-        <div class="column is-2-desktop is-3-tablet is-4-mobile">
-          <div class="demo-thumbnail" onclick="switchDemo('guitar', this)" style="cursor: pointer; border: 2px solid white; border-radius: 4px; overflow: hidden; background-color: #000;">
-            <figure class="image is-square">
-              <video muted preload="metadata" style="width: 100%; height: 100%; object-fit: contain;">
+          <!-- Guitar -->
+          <div class="demo-thumbnail" onclick="switchDemo('guitar', this)" data-key="guitar">
+            <div class="thumbnail-video-container">
+              <video muted preload="metadata">
                 <source src="static/images/guitar.webm" type="video/webm">
               </video>
-            </figure>
-            <div class="has-text-centered p-1" style="background-color: #f5f5f5;">
-              <p class="is-size-7 has-text-weight-bold">Guitar</p>
             </div>
+            <div class="thumbnail-label">Guitar</div>
           </div>
-        </div>
 
-        <!-- Piano -->
-        <div class="column is-2-desktop is-3-tablet is-4-mobile">
-          <div class="demo-thumbnail" onclick="switchDemo('piano', this)" style="cursor: pointer; border: 2px solid white; border-radius: 4px; overflow: hidden; background-color: #000;">
-            <figure class="image is-square">
-              <video muted preload="metadata" style="width: 100%; height: 100%; object-fit: contain;">
+          <!-- Piano -->
+          <div class="demo-thumbnail" onclick="switchDemo('piano', this)" data-key="piano">
+            <div class="thumbnail-video-container">
+              <video muted preload="metadata">
                 <source src="static/images/piano.webm" type="video/webm">
               </video>
-            </figure>
-            <div class="has-text-centered p-1" style="background-color: #f5f5f5;">
-              <p class="is-size-7 has-text-weight-bold">Piano</p>
             </div>
+            <div class="thumbnail-label">Piano</div>
           </div>
-        </div>
 
-        <!-- Table -->
-        <div class="column is-2-desktop is-3-tablet is-4-mobile">
-          <div class="demo-thumbnail" onclick="switchDemo('table', this)" style="cursor: pointer; border: 2px solid white; border-radius: 4px; overflow: hidden; background-color: #000;">
-            <figure class="image is-square">
-              <video muted preload="metadata" style="width: 100%; height: 100%; object-fit: contain;">
+          <!-- Table -->
+          <div class="demo-thumbnail" onclick="switchDemo('table', this)" data-key="table">
+            <div class="thumbnail-video-container">
+              <video muted preload="metadata">
                 <source src="static/images/table.webm" type="video/webm">
               </video>
-            </figure>
-            <div class="has-text-centered p-1" style="background-color: #f5f5f5;">
-              <p class="is-size-7 has-text-weight-bold">Table</p>
             </div>
+            <div class="thumbnail-label">Table</div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>
@@ -461,18 +508,32 @@ const demos = {
   }
 };
 
-function switchDemo(demoKey, element) {
+let autoPlayInterval;
+const demoKeys = Object.keys(demos);
+let currentIndex = 0;
+
+function switchDemo(demoKey, element, isAuto = false) {
+  // Stop autoplay if manually clicked
+  if (!isAuto) {
+    clearInterval(autoPlayInterval);
+    // Optional: restart autoplay after some time?
+    // startAutoPlay(); 
+  }
+
   // Update videos
   const inputVideo = document.getElementById('main-input-video');
   const reconVideo = document.getElementById('main-recon-video');
   
-  inputVideo.src = demos[demoKey].input;
-  reconVideo.src = demos[demoKey].recon;
-  
-  inputVideo.load();
-  inputVideo.play();
-  reconVideo.load();
-  reconVideo.play();
+  // Only update if source changes to avoid flickering if clicking same
+  if (!inputVideo.src.endsWith(demos[demoKey].input)) {
+      inputVideo.src = demos[demoKey].input;
+      reconVideo.src = demos[demoKey].recon;
+      
+      inputVideo.load();
+      inputVideo.play();
+      reconVideo.load();
+      reconVideo.play();
+  }
 
   // Update active state
   document.querySelectorAll('.demo-thumbnail').forEach(el => {
@@ -480,8 +541,51 @@ function switchDemo(demoKey, element) {
     el.style.borderColor = 'white';
   });
   element.classList.add('is-active');
-  element.style.borderColor = '#3273dc'; // Bulma primary color
+  element.style.borderColor = '#3273dc';
+
+  // Scroll to center
+  const container = document.getElementById('thumbnail-carousel');
+  const track = container.querySelector('.carousel-track');
+  
+  // Calculate scroll position to center the element
+  // We need the element's offset relative to the track, plus track's padding
+  // But simpler: element.offsetLeft is relative to offsetParent (track)
+  // We want element center to be at container center.
+  
+  const containerCenter = container.clientWidth / 2;
+  const elementCenter = element.offsetLeft + element.clientWidth / 2;
+  const scrollLeft = elementCenter - containerCenter;
+  
+  container.scrollTo({
+    left: scrollLeft,
+    behavior: 'smooth'
+  });
+
+  // Update index
+  currentIndex = demoKeys.indexOf(demoKey);
 }
+
+function startAutoPlay() {
+  autoPlayInterval = setInterval(() => {
+    currentIndex = (currentIndex + 1) % demoKeys.length;
+    const nextKey = demoKeys[currentIndex];
+    const nextElement = document.querySelector(`.demo-thumbnail[data-key="${nextKey}"]`);
+    if (nextElement) {
+      switchDemo(nextKey, nextElement, true);
+    }
+  }, 3000); // 3 seconds
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  // Center the initial active element
+  const active = document.querySelector('.demo-thumbnail.is-active');
+  if (active) {
+      // Small delay to ensure layout is done
+      setTimeout(() => switchDemo('badminton', active, true), 100);
+  }
+  startAutoPlay();
+});
 </script>
 
 <!-- End image carousel -->
