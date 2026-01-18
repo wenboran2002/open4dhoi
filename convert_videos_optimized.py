@@ -46,12 +46,9 @@ def main():
 
     all_videos = []
     for video_dir in video_dirs:
-        # Find all .mp4 files that don't already have .webm versions
+        # Find all .mp4 files (we'll overwrite existing .webm files with optimized versions)
         videos = list(video_dir.glob('*.mp4'))
-        for vid in videos:
-            webm_path = vid.with_suffix('.webm')
-            if not webm_path.exists():
-                all_videos.append(vid)
+        all_videos.extend(videos)
 
     if not all_videos:
         print("No .mp4 files found that need conversion.")
